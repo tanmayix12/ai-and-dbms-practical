@@ -1,0 +1,107 @@
+aids@aids-System-Product-Name:~$ mongo
+MongoDB shell version v3.6.8
+connecting to: mongodb://127.0.0.1:27017
+Implicit session: session { "id" : UUID("e15e12de-df90-477d-bcc5-2cee1d7766c0") }
+MongoDB server version: 3.6.8
+Server has startup warnings: 
+2025-09-09T14:07:42.799+0530 I STORAGE  [initandlisten] 
+2025-09-09T14:07:42.799+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2025-09-09T14:07:42.799+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2025-09-09T14:07:43.153+0530 I CONTROL  [initandlisten] 
+2025-09-09T14:07:43.153+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2025-09-09T14:07:43.153+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2025-09-09T14:07:43.153+0530 I CONTROL  [initandlisten] 
+> use sample53;
+switched to db sample53
+> db.createCollection("product");
+{ "ok" : 1 }
+> db.product.find();
+> db.product.insertOne({item:'pen',qty:50});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68bfa0b0fdc990cd482a3089")
+}
+> db.product.find();
+{ "_id" : ObjectId("68bfa0b0fdc990cd482a3089"), "item" : "pen", "qty" : 50 }
+> db.product.insertOne({item:'pencil',qty:40});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68bfa12efdc990cd482a308a")
+}
+> db.product.find();
+{ "_id" : ObjectId("68bfa0b0fdc990cd482a3089"), "item" : "pen", "qty" : 50 }
+{ "_id" : ObjectId("68bfa12efdc990cd482a308a"), "item" : "pencil", "qty" : 40 }
+> db.product.insertOne({item:'bag',qty:70});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68bfa184fdc990cd482a308b")
+}
+> db.product.insertOne({item:'scale',qty:80});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68bfa19bfdc990cd482a308c")
+}
+> db.product.insertOne({item:'book',qty:90});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68bfa1c6fdc990cd482a308d")
+}
+> db.product.find();
+{ "_id" : ObjectId("68bfa0b0fdc990cd482a3089"), "item" : "pen", "qty" : 50 }
+{ "_id" : ObjectId("68bfa12efdc990cd482a308a"), "item" : "pencil", "qty" : 40 }
+{ "_id" : ObjectId("68bfa184fdc990cd482a308b"), "item" : "bag", "qty" : 70 }
+{ "_id" : ObjectId("68bfa19bfdc990cd482a308c"), "item" : "scale", "qty" : 80 }
+{ "_id" : ObjectId("68bfa1c6fdc990cd482a308d"), "item" : "book", "qty" : 90 }
+> db.product.insertMany([{item:'notebook',qty:50},{item:'bottle',qty:65}]);
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("68bfa29dfdc990cd482a308e"),
+		ObjectId("68bfa29dfdc990cd482a308f")
+	]
+}
+> db.product.find();
+{ "_id" : ObjectId("68bfa0b0fdc990cd482a3089"), "item" : "pen", "qty" : 50 }
+{ "_id" : ObjectId("68bfa12efdc990cd482a308a"), "item" : "pencil", "qty" : 40 }
+{ "_id" : ObjectId("68bfa184fdc990cd482a308b"), "item" : "bag", "qty" : 70 }
+{ "_id" : ObjectId("68bfa19bfdc990cd482a308c"), "item" : "scale", "qty" : 80 }
+{ "_id" : ObjectId("68bfa1c6fdc990cd482a308d"), "item" : "book", "qty" : 90 }
+{ "_id" : ObjectId("68bfa29dfdc990cd482a308e"), "item" : "notebook", "qty" : 50 }
+{ "_id" : ObjectId("68bfa29dfdc990cd482a308f"), "item" : "bottle", "qty" : 65 }
+> db.product.insertOne({item:'shoes',qty:90,price:100});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68bfa33ffdc990cd482a3090")
+}
+> db.product.find();
+{ "_id" : ObjectId("68bfa0b0fdc990cd482a3089"), "item" : "pen", "qty" : 50 }
+{ "_id" : ObjectId("68bfa12efdc990cd482a308a"), "item" : "pencil", "qty" : 40 }
+{ "_id" : ObjectId("68bfa184fdc990cd482a308b"), "item" : "bag", "qty" : 70 }
+{ "_id" : ObjectId("68bfa19bfdc990cd482a308c"), "item" : "scale", "qty" : 80 }
+{ "_id" : ObjectId("68bfa1c6fdc990cd482a308d"), "item" : "book", "qty" : 90 }
+{ "_id" : ObjectId("68bfa29dfdc990cd482a308e"), "item" : "notebook", "qty" : 50 }
+{ "_id" : ObjectId("68bfa29dfdc990cd482a308f"), "item" : "bottle", "qty" : 65 }
+{ "_id" : ObjectId("68bfa33ffdc990cd482a3090"), "item" : "shoes", "qty" : 90, "price" : 100 }
+> db.product.update({item:'pen'},{$set:{item:'boll'}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.find();
+{ "_id" : ObjectId("68bfa0b0fdc990cd482a3089"), "item" : "boll", "qty" : 50 }
+{ "_id" : ObjectId("68bfa12efdc990cd482a308a"), "item" : "pencil", "qty" : 40 }
+{ "_id" : ObjectId("68bfa184fdc990cd482a308b"), "item" : "bag", "qty" : 70 }
+{ "_id" : ObjectId("68bfa19bfdc990cd482a308c"), "item" : "scale", "qty" : 80 }
+{ "_id" : ObjectId("68bfa1c6fdc990cd482a308d"), "item" : "book", "qty" : 90 }
+{ "_id" : ObjectId("68bfa29dfdc990cd482a308e"), "item" : "notebook", "qty" : 50 }
+{ "_id" : ObjectId("68bfa29dfdc990cd482a308f"), "item" : "bottle", "qty" : 65 }
+{ "_id" : ObjectId("68bfa33ffdc990cd482a3090"), "item" : "shoes", "qty" : 90, "price" : 100 }
+> db.product.remove({item:'bag'});
+WriteResult({ "nRemoved" : 1 })
+> db.product.find();
+{ "_id" : ObjectId("68bfa0b0fdc990cd482a3089"), "item" : "boll", "qty" : 50 }
+{ "_id" : ObjectId("68bfa12efdc990cd482a308a"), "item" : "pencil", "qty" : 40 }
+{ "_id" : ObjectId("68bfa19bfdc990cd482a308c"), "item" : "scale", "qty" : 80 }
+{ "_id" : ObjectId("68bfa1c6fdc990cd482a308d"), "item" : "book", "qty" : 90 }
+{ "_id" : ObjectId("68bfa29dfdc990cd482a308e"), "item" : "notebook", "qty" : 50 }
+{ "_id" : ObjectId("68bfa29dfdc990cd482a308f"), "item" : "bottle", "qty" : 65 }
+{ "_id" : ObjectId("68bfa33ffdc990cd482a3090"), "item" : "shoes", "qty" : 90, "price" : 100 }
+> 
+

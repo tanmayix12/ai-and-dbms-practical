@@ -1,0 +1,252 @@
+aids@aids-System-Product-Name:~$ sudo mysql
+[sudo] password for aids: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| COLLEGE_DATABASE   |
+| Students1          |
+| ass2               |
+| assignment2        |
+| clg                |
+| college            |
+| college0           |
+| college1           |
+| college4           |
+| college5           |
+| course0            |
+| courses            |
+| dbms               |
+| dbms1              |
+| information_schema |
+| kunal              |
+| kunal1             |
+| mmit               |
+| mysql              |
+| performance_schema |
+| practical          |
+| shre_assin2        |
+| student            |
+| student1           |
+| student2           |
+| student3           |
+| students           |
+| sys                |
+| uni_db             |
+| university         |
+| university_db      |
+| university_db1     |
+| university_db10    |
+| university_db12    |
+| university_db33    |
+| university_db40    |
+| university_info    |
+| university_parth   |
++--------------------+
+38 rows in set (0.00 sec)
+
+mysql> create database students53;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use students53;
+Database changed
+mysql> create table students(student_id int primary key,student_name varchar(20),age int(10),gender varchar(20),email varchar(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table students(student_id int primary key,student_name varchar(20),age int(10),gender varchar(20),email varchar(50));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> create table courses(course_id int primary key,course_name varchar(20),credit_hours int(10),department varchar(20));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> create table enrollments(enrollment_id int primary key,student_id int,course_id int,enrollment_date date,foreign key(student_id)references students(student_id),foreign key(course_id) references courses(course_id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into students(student_id,student_name,age,gender,email)values(101,'joy',20,'male','joy@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(student_id,student_name,age,gender,email)values(102,'riya',21,'female','riya@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(student_id,student_name,age,gender,email)values(103,'rockey',19,'male','rocky@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into students(student_id,student_name,age,gender,email)values(104,'tina',21,'female','tina@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into courses(course_id,course_name,course_hours,department)values(1,'mi',2,'aids');
+ERROR 1054 (42S22): Unknown column 'course_hours' in 'field list'
+mysql> insert into courses(course_id,course_name,credit_hours,department)values(1,'mi',2,'aids');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into courses(course_id,course_name,credit_hours,department)values(2,'ai',5,'aids');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into courses(course_id,course_name,credit_hours,department)values(3,'ds',5,'aids');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into courses(course_id,course_name,credit_hours,department)values(4,'iot',6,'cs');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> desc students;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| student_id   | int         | NO   | PRI | NULL    |       |
+| student_name | varchar(20) | YES  |     | NULL    |       |
+| age          | int         | YES  |     | NULL    |       |
+| gender       | varchar(20) | YES  |     | NULL    |       |
+| email        | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> dese courses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dese courses' at line 1
+mysql> desc courses;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| course_id    | int         | NO   | PRI | NULL    |       |
+| course_name  | varchar(20) | YES  |     | NULL    |       |
+| credit_hours | int         | YES  |     | NULL    |       |
+| department   | varchar(20) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from students;
++------------+--------------+------+--------+-----------------+
+| student_id | student_name | age  | gender | email           |
++------------+--------------+------+--------+-----------------+
+|        101 | joy          |   20 | male   | joy@gmail.com   |
+|        102 | riya         |   21 | female | riya@gmail.com  |
+|        103 | rockey       |   19 | male   | rocky@gmail.com |
+|        104 | tina         |   21 | female | tina@gmail.com  |
++------------+--------------+------+--------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from courses;
++-----------+-------------+--------------+------------+
+| course_id | course_name | credit_hours | department |
++-----------+-------------+--------------+------------+
+|         1 | mi          |            2 | aids       |
+|         2 | ai          |            5 | aids       |
+|         3 | ds          |            5 | aids       |
+|         4 | iot         |            6 | cs         |
++-----------+-------------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into enrollments(enrollment_id,student_id,course_id,enrollment_date)values(1001,101,10-09-2025);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc enrollments;
++-----------------+------+------+-----+---------+-------+
+| Field           | Type | Null | Key | Default | Extra |
++-----------------+------+------+-----+---------+-------+
+| enrollment_id   | int  | NO   | PRI | NULL    |       |
+| student_id      | int  | YES  | MUL | NULL    |       |
+| course_id       | int  | YES  | MUL | NULL    |       |
+| enrollment_date | date | YES  |     | NULL    |       |
++-----------------+------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into enrollments(enrollment_id,student_id,course_id,enrollment_date)values(1001,101,1,10-09-2025);
+ERROR 1292 (22007): Incorrect date value: '-2024' for column 'enrollment_date' at row 1
+mysql> insert into enrollments(enrollment_id,student_id,course_id,enrollment_date)values(1001,101,1,'10-09-2025');
+ERROR 1292 (22007): Incorrect date value: '10-09-2025' for column 'enrollment_date' at row 1
+mysql> insert into enrollments(enrollment_id,student_id,course_id,enrollment_date)values(1001,101,1,'2025-01-07');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into enrollments(enrollment_id,student_id,course_id,enrollment_date)values(1002,103,3,'2025-01-02');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into enrollments(enrollment_id,student_id,course_id,enrollment_date)values(1003,102,1,'2024-04-02');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from enrollments;
++---------------+------------+-----------+-----------------+
+| enrollment_id | student_id | course_id | enrollment_date |
++---------------+------------+-----------+-----------------+
+|          1001 |        101 |         1 | 2025-01-07      |
+|          1002 |        103 |         3 | 2025-01-02      |
+|          1003 |        102 |         1 | 2024-04-02      |
++---------------+------------+-----------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select s.student_name,c.course_name from students s JOIN enrollmets e ON s.student_id=e.student_id JOIN courses c ON e.course_id=c.course_id;
+ERROR 1146 (42S02): Table 'students53.enrollmets' doesn't exist
+mysql> select s.student_name,c.course_name from students s JOIN enrollments e ON s.student_id=e.student_id JOIN courses c ON e.course_id=c.course_id;
++--------------+-------------+
+| student_name | course_name |
++--------------+-------------+
+| joy          | mi          |
+| rockey       | ds          |
+| riya         | mi          |
++--------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select s.student_name from students s LEFT JOIN enrollments e ON s.student_id=e.srudent_id where e.student_id is NULL;
+ERROR 1054 (42S22): Unknown column 'e.srudent_id' in 'on clause'
+mysql> select s.student_name from students s LEFT JOIN enrollments e ON s.student_id=e.student_id where e.student_id is NULL;
++--------------+
+| student_name |
++--------------+
+| tina         |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into students(student_id,student_name,age,gender,email)values(105,'ram',19,'fale','ram@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from students;
++------------+--------------+------+--------+-----------------+
+| student_id | student_name | age  | gender | email           |
++------------+--------------+------+--------+-----------------+
+|        101 | joy          |   20 | male   | joy@gmail.com   |
+|        102 | riya         |   21 | female | riya@gmail.com  |
+|        103 | rockey       |   19 | male   | rocky@gmail.com |
+|        104 | tina         |   21 | female | tina@gmail.com  |
+|        105 | ram          |   19 | fale   | ram@gmail.com   |
++------------+--------------+------+--------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from enrollment where student_id=102 and course_id=1;
+ERROR 1146 (42S02): Table 'students53.enrollment' doesn't exist
+mysql> delete from enrollment where student_id=102 and course_id=2;
+ERROR 1146 (42S02): Table 'students53.enrollment' doesn't exist
+mysql> delete from enrollments where student_id=102 and course_id=2;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select course_name,deparment from courses where department in (select distinct department from courses);
+ERROR 1054 (42S22): Unknown column 'deparment' in 'field list'
+mysql> select course_name,department from courses where department in (select distinct department from courses);
++-------------+------------+
+| course_name | department |
++-------------+------------+
+| mi          | aids       |
+| ai          | aids       |
+| ds          | aids       |
+| iot         | cs         |
++-------------+------------+
+4 rows in set (0.01 sec)
+
+mysql> create view enrolled_students as select s.student_name,s.age,c.course_name,e.enrollment_date from students s JOIN enrollment e ON s.student_id=e.student_id JOIN courses ON e.course_id=c.course_id;
+ERROR 1146 (42S02): Table 'students53.enrollment' doesn't exist
+mysql> create view enrolled_students as select s.student_name,s.age,c.course_name,e.enrollment_date from students s JOIN enrollments e ON s.student_id=e.student_id JOIN courses ON e.course_id=c.course_id;
+
+ERROR 1054 (42S22): Unknown column 'c.course_name' in 'field list'
+mysql> create view enrolled_students as select s.student_name,s.age,c.course_name,e.enrollment_date from students s JOIN enrollments e ON s.student_id=e.student_id JOIN courses c ON e.course_id= c.course_id;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> ^A^C
+
+

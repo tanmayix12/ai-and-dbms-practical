@@ -1,0 +1,184 @@
+aids@aids-System-Product-Name:~$ sudo mysql
+[sudo] password for aids: 
+Sorry, try again.
+[sudo] password for aids: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| COLLEGE_DATABASE   |
+| ass2               |
+| assignment2        |
+| clg                |
+| college            |
+| college0           |
+| college1           |
+| college4           |
+| college5           |
+| course0            |
+| dbms               |
+| dbms1              |
+| information_schema |
+| kunal              |
+| kunal1             |
+| mmit               |
+| mysql              |
+| performance_schema |
+| practical          |
+| shre_assin2        |
+| sys                |
+| uni_db             |
+| university         |
+| university_db      |
+| university_db1     |
+| university_db10    |
+| university_db12    |
+| university_db33    |
+| university_db40    |
+| university_info    |
+| university_parth   |
++--------------------+
+31 rows in set (0.00 sec)
+
+mysql> use university_db12;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from professors;
++--------------+----------------+------------+----------+
+| professor_id | professor_name | department | salary   |
++--------------+----------------+------------+----------+
+|          101 | raj            | aids       | 50000.00 |
+|          103 | sham           | comp       | 40000.00 |
+|          104 | roy            | ai         | 40000.00 |
+|          105 | joy            | ds         | 58390.00 |
+|          107 | joy            | mech       |  5890.00 |
+|          109 | abhi           | mech       |  5890.00 |
+|          111 | asdd           | mecx       | 58455.00 |
++--------------+----------------+------------+----------+
+7 rows in set (0.00 sec)
+
+mysql> select professor_name,salary from professors order by salary desc limit 1;
++----------------+----------+
+| professor_name | salary   |
++----------------+----------+
+| asdd           | 58455.00 |
++----------------+----------+
+1 row in set (0.00 sec)
+
+mysql> selct professor_name,salary from professors where department='aids' order by salary desc limit1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct professor_name,salary from professors where department='aids' order by sal' at line 1
+mysql> selct professor_name,salary from professors where department='mech' order by salary desc limit
+5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct professor_name,salary from professors where department='mech' order by sal' at line 1
+mysql> selct professor_name,salary from professors order by salary limit 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct professor_name,salary from professors order by salary limit 5' at line 1
+mysql> select professor_name,salary from professors order by salary limit 5;
++----------------+----------+
+| professor_name | salary   |
++----------------+----------+
+| joy            |  5890.00 |
+| abhi           |  5890.00 |
+| sham           | 40000.00 |
+| roy            | 40000.00 |
+| raj            | 50000.00 |
++----------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select professor_name,salary from professors where department='mech' order by salary desc limit5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit5' at line 1
+mysql> select professor_name,salary from professors where department='mech' order by salary desc limit 5;
++----------------+---------+
+| professor_name | salary  |
++----------------+---------+
+| joy            | 5890.00 |
+| abhi           | 5890.00 |
++----------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select count(distinct department)
+    -> select count(distinct department) as unique_dept from professors;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select count(distinct department) as unique_dept from professors' at line 2
+mysql> select count(distinct department) select count(distinct department) as unique_department from
+professors;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select count(distinct department) as unique_department from professors' at line 1
+mysql> create table student(student_id int primary key,roll_no int(10), first_name varchar(20), last_name varchar(20));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> desc student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int         | NO   | PRI | NULL    |       |
+| roll_no    | int         | YES  |     | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> create sequence student_id start with 1000 increament by 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sequence student_id start with 1000 increament by 1' at line 1
+mysql> create synonym prof for professors;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'synonym prof for professors' at line 1
+mysql> ALTER TABLE student_order AUTO INCREMENT = 1000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTO INCREMENT = 1000' at line 1
+mysql> CREATE TABLE Persons (
+    ->     Personid int NOT NULL AUTO_INCREMENT,
+    ->     LastName varchar(255) NOT NULL,
+    ->     FirstName varchar(255),
+    ->     Age int,
+    ->     PRIMARY KEY (Personid)
+    -> desc student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc student' at line 7
+mysql> create table student(student_id int primary key AUTO_INCREMENT,first_name varchar (20),last_name varchar(20));
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> create table students(student_id int primary key AUTO_INCREMENT,first_name varchar (20),last_name varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> alter table student AUTO_INCREMENT=100;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into students(student_id ,first_name,last_name)values(101,'mira','roy');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> desc students;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| student_id | int         | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(20) | YES  |     | NULL    |                |
+| last_name  | varchar(20) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from students;
++------------+------------+-----------+
+| student_id | first_name | last_name |
++------------+------------+-----------+
+|        101 | mira       | roy       |
++------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> create view prof as select * from professors;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from prof
+    -> select * from prof;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from prof' at line 2
+mysql> ^A
+
+

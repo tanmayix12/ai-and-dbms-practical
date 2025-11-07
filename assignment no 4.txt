@@ -1,0 +1,206 @@
+aids@aids-System-Product-Name:~$ mongo
+MongoDB shell version v3.6.8
+connecting to: mongodb://127.0.0.1:27017
+Implicit session: session { "id" : UUID("eac0e6c5-63c7-482b-b585-29cfc6f723cf") }
+MongoDB server version: 3.6.8
+Server has startup warnings: 
+2025-09-16T14:10:47.908+0530 I STORAGE  [initandlisten] 
+2025-09-16T14:10:47.908+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2025-09-16T14:10:47.908+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2025-09-16T14:10:48.724+0530 I CONTROL  [initandlisten] 
+2025-09-16T14:10:48.724+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2025-09-16T14:10:48.724+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2025-09-16T14:10:48.724+0530 I CONTROL  [initandlisten] 
+> use te53_assignment4;
+switched to db te53_assignment4
+> db.createCollection("product");
+{ "ok" : 1 }
+> db.product.insertOne({p_id:101,category:'stationary',name:'pen',qty:100,amt:1000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dbc5fba32920b369c4ee")
+}
+> db.product.insertOne({p_id:101,category:'stationary',name:'pencil',qty:200,amt:2000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dbd4fba32920b369c4ef")
+}
+> db.product.insertOne({p_id:101,category:'stationary',name:'scale',qty:300,amt:3000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dbe4fba32920b369c4f0")
+}
+> db.product.insertOne({p_id:101,category:'stationary',name:'rubber',qty:400,amt:4000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dbfefba32920b369c4f1")
+}
+> db.product.remove({p_id:101});
+WriteResult({ "nRemoved" : 4 })
+> db.product.insertOne({p_id:101,category:'stationary',name:'pen',qty:100,amt:1000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dc53fba32920b369c4f2")
+}
+> db.product.insertOne({p_id:102,category:'stationary',name:'pencil',qty:200,amt:2000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dc60fba32920b369c4f3")
+}
+> db.product.insertOne({p_id:103,category:'stationary',name:'scale',qty:300,amt:3000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dc6cfba32920b369c4f4")
+}
+> db.product.insertOne({p_id:104,category:'stationary',name:'rubber',qty:400,amt:4000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dc76fba32920b369c4f5")
+}
+> db.product.find();
+{ "_id" : ObjectId("68c8dc53fba32920b369c4f2"), "p_id" : 101, "category" : "stationary", "name" : "pen", "qty" : 100, "amt" : 1000 }
+{ "_id" : ObjectId("68c8dc60fba32920b369c4f3"), "p_id" : 102, "category" : "stationary", "name" : "pencil", "qty" : 200, "amt" : 2000 }
+{ "_id" : ObjectId("68c8dc6cfba32920b369c4f4"), "p_id" : 103, "category" : "stationary", "name" : "scale", "qty" : 300, "amt" : 3000 }
+{ "_id" : ObjectId("68c8dc76fba32920b369c4f5"), "p_id" : 104, "category" : "stationary", "name" : "rubber", "qty" : 400, "amt" : 4000 }
+> db.product.insertOne({p_id:201,category:'furniture',name:'chair',qty:50,amt:40000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dd23fba32920b369c4f6")
+}
+> db.product.insertOne({p_id:202,category:'furniture',name:'table',qty:20,amt:50000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dd3cfba32920b369c4f7")
+}
+> db.product.insertOne({p_id:203,category:'furniture',name:'sofa',qty:20,amt:60000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dd50fba32920b369c4f8")
+}
+> db.product.insertOne({p_id:204,category:'furniture',name:'bed',qty:40,amt:39000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8dd9dfba32920b369c4f9")
+}
+> db.product.find();
+{ "_id" : ObjectId("68c8dc53fba32920b369c4f2"), "p_id" : 101, "category" : "stationary", "name" : "pen", "qty" : 100, "amt" : 1000 }
+{ "_id" : ObjectId("68c8dc60fba32920b369c4f3"), "p_id" : 102, "category" : "stationary", "name" : "pencil", "qty" : 200, "amt" : 2000 }
+{ "_id" : ObjectId("68c8dc6cfba32920b369c4f4"), "p_id" : 103, "category" : "stationary", "name" : "scale", "qty" : 300, "amt" : 3000 }
+{ "_id" : ObjectId("68c8dc76fba32920b369c4f5"), "p_id" : 104, "category" : "stationary", "name" : "rubber", "qty" : 400, "amt" : 4000 }
+{ "_id" : ObjectId("68c8dd23fba32920b369c4f6"), "p_id" : 201, "category" : "furniture", "name" : "chair", "qty" : 50, "amt" : 40000 }
+{ "_id" : ObjectId("68c8dd3cfba32920b369c4f7"), "p_id" : 202, "category" : "furniture", "name" : "table", "qty" : 20, "amt" : 50000 }
+{ "_id" : ObjectId("68c8dd50fba32920b369c4f8"), "p_id" : 203, "category" : "furniture", "name" : "sofa", "qty" : 20, "amt" : 60000 }
+{ "_id" : ObjectId("68c8dd9dfba32920b369c4f9"), "p_id" : 204, "category" : "furniture", "name" : "bed", "qty" : 40, "amt" : 39000 }
+> db.product.insertOne({p_id:301,category:'electronics',name:'tv',qty:4,amt:100000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8ddf9fba32920b369c4fa")
+}
+> db.product.insertOne({p_id:302,category:'electronics',name:'mobile',qty:3,amt:200000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8de28fba32920b369c4fb")
+}
+> db.product.insertOne({p_id:303,category:'electronics',name:'refrigerator',qty:1,amt:33000});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8de4bfba32920b369c4fc")
+}
+> db.product.insertOne({p_id:304,category:'electronics',name:'oven',qty:1,amt:44400});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("68c8de70fba32920b369c4fd")
+}
+> db.product.find();
+{ "_id" : ObjectId("68c8dc53fba32920b369c4f2"), "p_id" : 101, "category" : "stationary", "name" : "pen", "qty" : 100, "amt" : 1000 }
+{ "_id" : ObjectId("68c8dc60fba32920b369c4f3"), "p_id" : 102, "category" : "stationary", "name" : "pencil", "qty" : 200, "amt" : 2000 }
+{ "_id" : ObjectId("68c8dc6cfba32920b369c4f4"), "p_id" : 103, "category" : "stationary", "name" : "scale", "qty" : 300, "amt" : 3000 }
+{ "_id" : ObjectId("68c8dc76fba32920b369c4f5"), "p_id" : 104, "category" : "stationary", "name" : "rubber", "qty" : 400, "amt" : 4000 }
+{ "_id" : ObjectId("68c8dd23fba32920b369c4f6"), "p_id" : 201, "category" : "furniture", "name" : "chair", "qty" : 50, "amt" : 40000 }
+{ "_id" : ObjectId("68c8dd3cfba32920b369c4f7"), "p_id" : 202, "category" : "furniture", "name" : "table", "qty" : 20, "amt" : 50000 }
+{ "_id" : ObjectId("68c8dd50fba32920b369c4f8"), "p_id" : 203, "category" : "furniture", "name" : "sofa", "qty" : 20, "amt" : 60000 }
+{ "_id" : ObjectId("68c8dd9dfba32920b369c4f9"), "p_id" : 204, "category" : "furniture", "name" : "bed", "qty" : 40, "amt" : 39000 }
+{ "_id" : ObjectId("68c8ddf9fba32920b369c4fa"), "p_id" : 301, "category" : "electronics", "name" : "tv", "qty" : 4, "amt" : 100000 }
+{ "_id" : ObjectId("68c8de28fba32920b369c4fb"), "p_id" : 302, "category" : "electronics", "name" : "mobile", "qty" : 3, "amt" : 200000 }
+{ "_id" : ObjectId("68c8de4bfba32920b369c4fc"), "p_id" : 303, "category" : "electronics", "name" : "refrigerator", "qty" : 1, "amt" : 33000 }
+{ "_id" : ObjectId("68c8de70fba32920b369c4fd"), "p_id" : 304, "category" : "electronics", "name" : "oven", "qty" : 1, "amt" : 44400 }
+> db.product.aggregate([{$group:{_id:'stationary',avgamt:{$avg:"$amt"}}}]);
+{ "_id" : "stationary", "avgamt" : 48033.333333333336 }
+> db.product.aggregate([{$group:{_id:'stationary',avgamt:{$avg:'$amt'}}}]);
+{ "_id" : "stationary", "avgamt" : 48033.333333333336 }
+> db.product.aggregate([ { $match: { category: "stationary" } }, { $group: { _id: "$category", avgamt: { $avg: "$amt" } } }  ])
+{ "_id" : "stationary", "avgamt" : 2500 }
+> db.product.aggregate([ { $group: { _id: "$category", avgamt: { $avg: "$amt" } } }  ]);
+{ "_id" : "electronics", "avgamt" : 94350 }
+{ "_id" : "furniture", "avgamt" : 47250 }
+{ "_id" : "stationary", "avgamt" : 2500 }
+> db.product.aggregate([ { $group: { _id: "$category", minamt: { $min: "$amt" } } }  ]);
+{ "_id" : "electronics", "minamt" : 33000 }
+{ "_id" : "furniture", "minamt" : 39000 }
+{ "_id" : "stationary", "minamt" : 1000 }
+> db.product.aggregate([ { $sort:{amt:-1}}]);
+{ "_id" : ObjectId("68c8de28fba32920b369c4fb"), "p_id" : 302, "category" : "electronics", "name" : "mobile", "qty" : 3, "amt" : 200000 }
+{ "_id" : ObjectId("68c8ddf9fba32920b369c4fa"), "p_id" : 301, "category" : "electronics", "name" : "tv", "qty" : 4, "amt" : 100000 }
+{ "_id" : ObjectId("68c8dd50fba32920b369c4f8"), "p_id" : 203, "category" : "furniture", "name" : "sofa", "qty" : 20, "amt" : 60000 }
+{ "_id" : ObjectId("68c8dd3cfba32920b369c4f7"), "p_id" : 202, "category" : "furniture", "name" : "table", "qty" : 20, "amt" : 50000 }
+{ "_id" : ObjectId("68c8de70fba32920b369c4fd"), "p_id" : 304, "category" : "electronics", "name" : "oven", "qty" : 1, "amt" : 44400 }
+{ "_id" : ObjectId("68c8dd23fba32920b369c4f6"), "p_id" : 201, "category" : "furniture", "name" : "chair", "qty" : 50, "amt" : 40000 }
+{ "_id" : ObjectId("68c8dd9dfba32920b369c4f9"), "p_id" : 204, "category" : "furniture", "name" : "bed", "qty" : 40, "amt" : 39000 }
+{ "_id" : ObjectId("68c8de4bfba32920b369c4fc"), "p_id" : 303, "category" : "electronics", "name" : "refrigerator", "qty" : 1, "amt" : 33000 }
+{ "_id" : ObjectId("68c8dc76fba32920b369c4f5"), "p_id" : 104, "category" : "stationary", "name" : "rubber", "qty" : 400, "amt" : 4000 }
+{ "_id" : ObjectId("68c8dc6cfba32920b369c4f4"), "p_id" : 103, "category" : "stationary", "name" : "scale", "qty" : 300, "amt" : 3000 }
+{ "_id" : ObjectId("68c8dc60fba32920b369c4f3"), "p_id" : 102, "category" : "stationary", "name" : "pencil", "qty" : 200, "amt" : 2000 }
+{ "_id" : ObjectId("68c8dc53fba32920b369c4f2"), "p_id" : 101, "category" : "stationary", "name" : "pen", "qty" : 100, "amt" : 1000 }
+> db.product.aggregate([ { $sort:{amt:1}{$limit:5}]);
+... db.product.aggregate([ { $sort:{amt:1}},{$limit:5}]);
+... ^C
+
+> db.product.aggregate([ { $sort:{amt:-1}},{$limit:5}]);
+{ "_id" : ObjectId("68c8de28fba32920b369c4fb"), "p_id" : 302, "category" : "electronics", "name" : "mobile", "qty" : 3, "amt" : 200000 }
+{ "_id" : ObjectId("68c8ddf9fba32920b369c4fa"), "p_id" : 301, "category" : "electronics", "name" : "tv", "qty" : 4, "amt" : 100000 }
+{ "_id" : ObjectId("68c8dd50fba32920b369c4f8"), "p_id" : 203, "category" : "furniture", "name" : "sofa", "qty" : 20, "amt" : 60000 }
+{ "_id" : ObjectId("68c8dd3cfba32920b369c4f7"), "p_id" : 202, "category" : "furniture", "name" : "table", "qty" : 20, "amt" : 50000 }
+{ "_id" : ObjectId("68c8de70fba32920b369c4fd"), "p_id" : 304, "category" : "electronics", "name" : "oven", "qty" : 1, "amt" : 44400 }
+> db.product.createIndex({p_id:1});
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+> var mapFunction=function(){emit{this.category,this.amt);};
+2025-09-16T10:06:56.728+0530 E QUERY    [thread1] SyntaxError: missing ; before statement @(shell):1:31
+> var reduceFunction=function(key,values){return Array.sum(values);};
+> db.product.mapReduce(mapFunction,reduceFunction,{out:"category_wise_output"});
+2025-09-16T10:12:41.837+0530 E QUERY    [thread1] ReferenceError: mapFunction is not defined :
+@(shell):1:1
+> var mapFunction=function(){emit(this.catrgory,this.amt);};
+> db.product.mapReduce(mapFunction,reduceFunction,{out:"category_wise_output"});
+{
+	"result" : "category_wise_output",
+	"timeMillis" : 63,
+	"counts" : {
+		"input" : 12,
+		"emit" : 12,
+		"reduce" : 1,
+		"output" : 1
+	},
+	"ok" : 1
+}
+> var mapFunction=function(){emit(this.catrgory,this.amt);};
+> db.product.mapReduce(mapFunction,reduceFunction,{out:"category_wise_output"});
+{
+	"result" : "category_wise_output",
+	"timeMillis" : 24,
+	"counts" : {
+		"input" : 12,
+		"emit" : 12,
+		"reduce" : 1,
+		"output" : 1
+	},
+	"ok" : 1
+}
+> db.catrgory_wise_ouput.find();
+> 
+
+
